@@ -1,6 +1,11 @@
+cfg = {}
+dofile("local.settings.lua")
+if cfg.WiFiPwd ~= nil then
+    print("No Wifi Settings found") 
+end
 wifi.setmode(wifi.STATION)
-wifi.sta.config("YOUR_NETWORK_NAME","YOUR_NETWORK_PASSWORD")
-print(wifi.sta.getip())
+wifi.sta.config(cfg.WiFiSSID, cfg.WiFiPwd, 0)
+print("Connected to wifi "..cfg.WiFiSSID.." with IP "..wifi.sta.getip())
 led1 = 3
 led2 = 4
 gpio.mode(led1, gpio.OUTPUT)
